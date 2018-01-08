@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="resturantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="coeficent">
+          <Key>
+            <PropertyRef Name="cprice" />
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="cprice" Type="int" Nullable="false" />
+          <Property Name="time_set" Type="time" Precision="7" Nullable="false" />
+          <Property Name="code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="post_code" Type="int" Nullable="false" />
+          <Property Name="c_cellphone_number" Type="bigint" Nullable="false" />
+          <Property Name="vegeterian" Type="bit" />
+          <Property Name="c_phone_number" Type="int" Nullable="false" />
+          <Property Name="birth_date" Type="date" />
+          <Property Name="c_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="c_city" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="c_province" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="picture" Type="image" />
+        </EntityType>
+        <EntityType Name="delivery">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="d_name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="d_phone_number" Type="bigint" Nullable="false" />
+          <Property Name="resturant" Type="int" Nullable="false" />
+          <Property Name="available" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="food">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="f_name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="f_vegeterian" Type="bit" Nullable="false" />
+          <Property Name="combination" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="available" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mambership">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="mtype" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="mpassword" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="ssn" />
+          </Key>
+          <Property Name="ssn" Type="int" Nullable="false" />
+          <Property Name="m_phone_number" Type="int" Nullable="false" />
+          <Property Name="m_cellphone_number" Type="bigint" Nullable="false" />
+          <Property Name="m_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="manages">
+          <Key>
+            <PropertyRef Name="ssn" />
+            <PropertyRef Name="rcode" />
+          </Key>
+          <Property Name="ssn" Type="int" Nullable="false" />
+          <Property Name="rcode" Type="int" Nullable="false" />
+          <Property Name="available" Type="bit" Nullable="false" />
+          <Property Name="startDate" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ordering">
+          <Key>
+            <PropertyRef Name="costumer" />
+            <PropertyRef Name="order_code" />
+            <PropertyRef Name="food" />
+          </Key>
+          <Property Name="costumer" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="order_code" Type="int" Nullable="false" />
+          <Property Name="food" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="orders_time" Type="datetime" Nullable="false" />
+          <Property Name="recieved_time" Type="datetime" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="delivery_code" Type="int" />
+          <Property Name="delivery_price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="payment_time" Type="datetime" Nullable="false" />
+          <Property Name="payment_system_name" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="order_code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="resturant">
+          <Key>
+            <PropertyRef Name="branch_code" />
+          </Key>
+          <Property Name="branch_code" Type="int" Nullable="false" />
+          <Property Name="branch_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="startdate" Type="date" />
+          <Property Name="point" Type="tinyint" />
+          <Property Name="r_city" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="r_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="r_province" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="r_phone_number" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="work_time">
+          <Key>
+            <PropertyRef Name="Rcode" />
+            <PropertyRef Name="Wtime" />
+          </Key>
+          <Property Name="Rcode" Type="int" Nullable="false" />
+          <Property Name="Wtime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__coeficent__code__44FF419A">
+          <End Role="food" Type="Self.food" Multiplicity="1" />
+          <End Role="coeficent" Type="Self.coeficent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="food">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="coeficent">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivery__restur__276EDEB3">
+          <End Role="resturant" Type="Self.resturant" Multiplicity="1" />
+          <End Role="delivery" Type="Self.delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="delivery">
+              <PropertyRef Name="resturant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manages__rcode__3A81B327">
+          <End Role="resturant" Type="Self.resturant" Multiplicity="1" />
+          <End Role="manages" Type="Self.manages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="manages">
+              <PropertyRef Name="rcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manages__ssn__398D8EEE">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="manages" Type="Self.manages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="ssn" />
+            </Principal>
+            <Dependent Role="manages">
+              <PropertyRef Name="ssn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordering__costum__3D5E1FD2">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="ordering" Type="Self.ordering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="ordering">
+              <PropertyRef Name="costumer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordering__food__3F466844">
+          <End Role="food" Type="Self.food" Multiplicity="1" />
+          <End Role="ordering" Type="Self.ordering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="food">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="ordering">
+              <PropertyRef Name="food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordering__order___3E52440B">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="ordering" Type="Self.ordering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="ordering">
+              <PropertyRef Name="order_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__delivery__2C3393D0">
+          <End Role="delivery" Type="Self.delivery" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="delivery">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="delivery_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payment__order_c__2F10007B">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="payment" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="order_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__work_time__Rcode__4222D4EF">
+          <End Role="resturant" Type="Self.resturant" Multiplicity="1" />
+          <End Role="work_time" Type="Self.work_time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="work_time">
+              <PropertyRef Name="Rcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="resturantModelStoreContainer">
+          <EntitySet Name="coeficent" EntityType="Self.coeficent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="delivery" EntityType="Self.delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="food" EntityType="Self.food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mambership" EntityType="Self.mambership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manager" EntityType="Self.manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manages" EntityType="Self.manages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ordering" EntityType="Self.ordering" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="resturant" EntityType="Self.resturant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="work_time" EntityType="Self.work_time" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__coeficent__code__44FF419A" Association="Self.FK__coeficent__code__44FF419A">
+            <End Role="food" EntitySet="food" />
+            <End Role="coeficent" EntitySet="coeficent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivery__restur__276EDEB3" Association="Self.FK__delivery__restur__276EDEB3">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="delivery" EntitySet="delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manages__rcode__3A81B327" Association="Self.FK__manages__rcode__3A81B327">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="manages" EntitySet="manages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manages__ssn__398D8EEE" Association="Self.FK__manages__ssn__398D8EEE">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="manages" EntitySet="manages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordering__costum__3D5E1FD2" Association="Self.FK__ordering__costum__3D5E1FD2">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="ordering" EntitySet="ordering" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordering__food__3F466844" Association="Self.FK__ordering__food__3F466844">
+            <End Role="food" EntitySet="food" />
+            <End Role="ordering" EntitySet="ordering" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordering__order___3E52440B" Association="Self.FK__ordering__order___3E52440B">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="ordering" EntitySet="ordering" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__delivery__2C3393D0" Association="Self.FK__orders__delivery__2C3393D0">
+            <End Role="delivery" EntitySet="delivery" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payment__order_c__2F10007B" Association="Self.FK__payment__order_c__2F10007B">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__work_time__Rcode__4222D4EF" Association="Self.FK__work_time__Rcode__4222D4EF">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="work_time" EntitySet="work_time" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="resturantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="coeficent">
+          <Key>
+            <PropertyRef Name="cprice" />
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="cprice" Type="Int32" Nullable="false" />
+          <Property Name="time_set" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="food" Relationship="Self.FK__coeficent__code__44FF419A" FromRole="coeficent" ToRole="food" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="post_code" Type="Int32" Nullable="false" />
+          <Property Name="c_cellphone_number" Type="Int64" Nullable="false" />
+          <Property Name="vegeterian" Type="Boolean" />
+          <Property Name="c_phone_number" Type="Int32" Nullable="false" />
+          <Property Name="birth_date" Type="DateTime" Precision="0" />
+          <Property Name="c_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_city" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_province" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ordering" Relationship="Self.FK__ordering__costum__3D5E1FD2" FromRole="customer" ToRole="ordering" />
+        </EntityType>
+        <EntityType Name="delivery">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="d_name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="d_phone_number" Type="Int64" Nullable="false" />
+          <Property Name="resturant" Type="Int32" Nullable="false" />
+          <Property Name="available" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="resturant1" Relationship="Self.FK__delivery__restur__276EDEB3" FromRole="delivery" ToRole="resturant" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__delivery__2C3393D0" FromRole="delivery" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="food">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="f_name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="f_vegeterian" Type="Boolean" Nullable="false" />
+          <Property Name="combination" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="available" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="coeficent" Relationship="Self.FK__coeficent__code__44FF419A" FromRole="food" ToRole="coeficent" />
+          <NavigationProperty Name="ordering" Relationship="Self.FK__ordering__food__3F466844" FromRole="food" ToRole="ordering" />
+        </EntityType>
+        <EntityType Name="mambership">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mtype" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mpassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="ssn" />
+          </Key>
+          <Property Name="ssn" Type="Int32" Nullable="false" />
+          <Property Name="m_phone_number" Type="Int32" Nullable="false" />
+          <Property Name="m_cellphone_number" Type="Int64" Nullable="false" />
+          <Property Name="m_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="manages" Relationship="Self.FK__manages__ssn__398D8EEE" FromRole="manager" ToRole="manages" />
+        </EntityType>
+        <EntityType Name="manages">
+          <Key>
+            <PropertyRef Name="ssn" />
+            <PropertyRef Name="rcode" />
+          </Key>
+          <Property Name="ssn" Type="Int32" Nullable="false" />
+          <Property Name="rcode" Type="Int32" Nullable="false" />
+          <Property Name="available" Type="Boolean" Nullable="false" />
+          <Property Name="startDate" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__manages__ssn__398D8EEE" FromRole="manages" ToRole="manager" />
+          <NavigationProperty Name="resturant" Relationship="Self.FK__manages__rcode__3A81B327" FromRole="manages" ToRole="resturant" />
+        </EntityType>
+        <EntityType Name="ordering">
+          <Key>
+            <PropertyRef Name="costumer" />
+            <PropertyRef Name="order_code" />
+            <PropertyRef Name="food" />
+          </Key>
+          <Property Name="costumer" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_code" Type="Int32" Nullable="false" />
+          <Property Name="food" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__ordering__costum__3D5E1FD2" FromRole="ordering" ToRole="customer" />
+          <NavigationProperty Name="food1" Relationship="Self.FK__ordering__food__3F466844" FromRole="ordering" ToRole="food" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__ordering__order___3E52440B" FromRole="ordering" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="orders_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="recieved_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="delivery_code" Type="Int32" />
+          <Property Name="delivery_price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="delivery" Relationship="Self.FK__orders__delivery__2C3393D0" FromRole="orders" ToRole="delivery" />
+          <NavigationProperty Name="ordering" Relationship="Self.FK__ordering__order___3E52440B" FromRole="orders" ToRole="ordering" />
+          <NavigationProperty Name="payment" Relationship="Self.FK__payment__order_c__2F10007B" FromRole="orders" ToRole="payment" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="payment_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="payment_system_name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__payment__order_c__2F10007B" FromRole="payment" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="resturant">
+          <Key>
+            <PropertyRef Name="branch_code" />
+          </Key>
+          <Property Name="branch_code" Type="Int32" Nullable="false" />
+          <Property Name="branch_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="point" Type="Byte" />
+          <Property Name="r_city" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_province" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_phone_number" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="delivery" Relationship="Self.FK__delivery__restur__276EDEB3" FromRole="resturant" ToRole="delivery" />
+          <NavigationProperty Name="manages" Relationship="Self.FK__manages__rcode__3A81B327" FromRole="resturant" ToRole="manages" />
+          <NavigationProperty Name="work_time" Relationship="Self.FK__work_time__Rcode__4222D4EF" FromRole="resturant" ToRole="work_time" />
+        </EntityType>
+        <EntityType Name="work_time">
+          <Key>
+            <PropertyRef Name="Rcode" />
+            <PropertyRef Name="Wtime" />
+          </Key>
+          <Property Name="Rcode" Type="Int32" Nullable="false" />
+          <Property Name="Wtime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="resturant" Relationship="Self.FK__work_time__Rcode__4222D4EF" FromRole="work_time" ToRole="resturant" />
+        </EntityType>
+        <Association Name="FK__coeficent__code__44FF419A">
+          <End Role="food" Type="Self.food" Multiplicity="1" />
+          <End Role="coeficent" Type="Self.coeficent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="food">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="coeficent">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordering__costum__3D5E1FD2">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="ordering" Type="Self.ordering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="ordering">
+              <PropertyRef Name="costumer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivery__restur__276EDEB3">
+          <End Role="resturant" Type="Self.resturant" Multiplicity="1" />
+          <End Role="delivery" Type="Self.delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="delivery">
+              <PropertyRef Name="resturant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__delivery__2C3393D0">
+          <End Role="delivery" Type="Self.delivery" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="delivery">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="delivery_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordering__food__3F466844">
+          <End Role="food" Type="Self.food" Multiplicity="1" />
+          <End Role="ordering" Type="Self.ordering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="food">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="ordering">
+              <PropertyRef Name="food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manages__ssn__398D8EEE">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="manages" Type="Self.manages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="ssn" />
+            </Principal>
+            <Dependent Role="manages">
+              <PropertyRef Name="ssn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manages__rcode__3A81B327">
+          <End Role="resturant" Type="Self.resturant" Multiplicity="1" />
+          <End Role="manages" Type="Self.manages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="manages">
+              <PropertyRef Name="rcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordering__order___3E52440B">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="ordering" Type="Self.ordering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="ordering">
+              <PropertyRef Name="order_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payment__order_c__2F10007B">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="payment" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="order_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__work_time__Rcode__4222D4EF">
+          <End Role="resturant" Type="Self.resturant" Multiplicity="1" />
+          <End Role="work_time" Type="Self.work_time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="work_time">
+              <PropertyRef Name="Rcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="resturantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="coeficent" EntityType="Self.coeficent" />
+          <EntitySet Name="customer" EntityType="Self.customer" />
+          <EntitySet Name="delivery" EntityType="Self.delivery" />
+          <EntitySet Name="food" EntityType="Self.food" />
+          <EntitySet Name="mambership" EntityType="Self.mambership" />
+          <EntitySet Name="manager" EntityType="Self.manager" />
+          <EntitySet Name="manages" EntityType="Self.manages" />
+          <EntitySet Name="ordering" EntityType="Self.ordering" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="payment" EntityType="Self.payment" />
+          <EntitySet Name="resturant" EntityType="Self.resturant" />
+          <EntitySet Name="work_time" EntityType="Self.work_time" />
+          <AssociationSet Name="FK__coeficent__code__44FF419A" Association="Self.FK__coeficent__code__44FF419A">
+            <End Role="food" EntitySet="food" />
+            <End Role="coeficent" EntitySet="coeficent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordering__costum__3D5E1FD2" Association="Self.FK__ordering__costum__3D5E1FD2">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="ordering" EntitySet="ordering" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivery__restur__276EDEB3" Association="Self.FK__delivery__restur__276EDEB3">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="delivery" EntitySet="delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__delivery__2C3393D0" Association="Self.FK__orders__delivery__2C3393D0">
+            <End Role="delivery" EntitySet="delivery" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordering__food__3F466844" Association="Self.FK__ordering__food__3F466844">
+            <End Role="food" EntitySet="food" />
+            <End Role="ordering" EntitySet="ordering" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manages__ssn__398D8EEE" Association="Self.FK__manages__ssn__398D8EEE">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="manages" EntitySet="manages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manages__rcode__3A81B327" Association="Self.FK__manages__rcode__3A81B327">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="manages" EntitySet="manages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordering__order___3E52440B" Association="Self.FK__ordering__order___3E52440B">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="ordering" EntitySet="ordering" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payment__order_c__2F10007B" Association="Self.FK__payment__order_c__2F10007B">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__work_time__Rcode__4222D4EF" Association="Self.FK__work_time__Rcode__4222D4EF">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="work_time" EntitySet="work_time" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="resturantModelStoreContainer" CdmEntityContainer="resturantEntities">
+          <EntitySetMapping Name="coeficent">
+            <EntityTypeMapping TypeName="resturantModel.coeficent">
+              <MappingFragment StoreEntitySet="coeficent">
+                <ScalarProperty Name="cprice" ColumnName="cprice" />
+                <ScalarProperty Name="time_set" ColumnName="time_set" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer">
+            <EntityTypeMapping TypeName="resturantModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="post_code" ColumnName="post_code" />
+                <ScalarProperty Name="c_cellphone_number" ColumnName="c_cellphone_number" />
+                <ScalarProperty Name="vegeterian" ColumnName="vegeterian" />
+                <ScalarProperty Name="c_phone_number" ColumnName="c_phone_number" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="c_address" ColumnName="c_address" />
+                <ScalarProperty Name="c_city" ColumnName="c_city" />
+                <ScalarProperty Name="c_province" ColumnName="c_province" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="delivery">
+            <EntityTypeMapping TypeName="resturantModel.delivery">
+              <MappingFragment StoreEntitySet="delivery">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="d_phone_number" ColumnName="d_phone_number" />
+                <ScalarProperty Name="resturant" ColumnName="resturant" />
+                <ScalarProperty Name="available" ColumnName="available" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="food">
+            <EntityTypeMapping TypeName="resturantModel.food">
+              <MappingFragment StoreEntitySet="food">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="f_vegeterian" ColumnName="f_vegeterian" />
+                <ScalarProperty Name="combination" ColumnName="combination" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="available" ColumnName="available" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mambership">
+            <EntityTypeMapping TypeName="resturantModel.mambership">
+              <MappingFragment StoreEntitySet="mambership">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="mtype" ColumnName="mtype" />
+                <ScalarProperty Name="mpassword" ColumnName="mpassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manager">
+            <EntityTypeMapping TypeName="resturantModel.manager">
+              <MappingFragment StoreEntitySet="manager">
+                <ScalarProperty Name="ssn" ColumnName="ssn" />
+                <ScalarProperty Name="m_phone_number" ColumnName="m_phone_number" />
+                <ScalarProperty Name="m_cellphone_number" ColumnName="m_cellphone_number" />
+                <ScalarProperty Name="m_name" ColumnName="m_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manages">
+            <EntityTypeMapping TypeName="resturantModel.manages">
+              <MappingFragment StoreEntitySet="manages">
+                <ScalarProperty Name="ssn" ColumnName="ssn" />
+                <ScalarProperty Name="rcode" ColumnName="rcode" />
+                <ScalarProperty Name="available" ColumnName="available" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordering">
+            <EntityTypeMapping TypeName="resturantModel.ordering">
+              <MappingFragment StoreEntitySet="ordering">
+                <ScalarProperty Name="costumer" ColumnName="costumer" />
+                <ScalarProperty Name="order_code" ColumnName="order_code" />
+                <ScalarProperty Name="food" ColumnName="food" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="resturantModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="orders_time" ColumnName="orders_time" />
+                <ScalarProperty Name="recieved_time" ColumnName="recieved_time" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="delivery_code" ColumnName="delivery_code" />
+                <ScalarProperty Name="delivery_price" ColumnName="delivery_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment">
+            <EntityTypeMapping TypeName="resturantModel.payment">
+              <MappingFragment StoreEntitySet="payment">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="payment_time" ColumnName="payment_time" />
+                <ScalarProperty Name="payment_system_name" ColumnName="payment_system_name" />
+                <ScalarProperty Name="order_code" ColumnName="order_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resturant">
+            <EntityTypeMapping TypeName="resturantModel.resturant">
+              <MappingFragment StoreEntitySet="resturant">
+                <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+                <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="point" ColumnName="point" />
+                <ScalarProperty Name="r_city" ColumnName="r_city" />
+                <ScalarProperty Name="r_address" ColumnName="r_address" />
+                <ScalarProperty Name="r_province" ColumnName="r_province" />
+                <ScalarProperty Name="r_phone_number" ColumnName="r_phone_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="work_time">
+            <EntityTypeMapping TypeName="resturantModel.work_time">
+              <MappingFragment StoreEntitySet="work_time">
+                <ScalarProperty Name="Rcode" ColumnName="Rcode" />
+                <ScalarProperty Name="Wtime" ColumnName="Wtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

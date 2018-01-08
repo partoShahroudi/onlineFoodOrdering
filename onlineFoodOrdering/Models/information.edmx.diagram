@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7fb9f5a3ff54d4d81848a019c4c8eb4" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="resturantModel.coeficent" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.customer" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.delivery" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.food" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.mambership" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.manager" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.manages" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.ordering" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.orders" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.payment" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.resturant" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="resturantModel.work_time" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="resturantModel.FK__coeficent__code__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__ordering__costum__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__delivery__restur__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__orders__delivery__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__ordering__food__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__manages__ssn__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__manages__rcode__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__ordering__order___3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__payment__order_c__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="resturantModel.FK__work_time__Rcode__4222D4EF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
