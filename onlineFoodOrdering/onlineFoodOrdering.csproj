@@ -190,6 +190,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\slideshow.css" />
+    <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -204,6 +206,14 @@
       <DependentUpon>information.edmx</DependentUpon>
       <LastGenOutput>information.cs</LastGenOutput>
     </Content>
+    <Content Include="picture\slide\1.png" />
+    <Content Include="picture\slide\2.png" />
+    <Content Include="picture\slide\3.png" />
+    <Content Include="picture\slide\4.png" />
+    <Content Include="picture\slide\5.png" />
+    <Content Include="picture\slide\6.png" />
+    <Content Include="picture\slide\7.png" />
+    <Content Include="picture\slide\8.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\information.edmx">
@@ -224,6 +234,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\slideshow.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -239,6 +250,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\slideshow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
