@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+    <title>@ViewBag.Title </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body style="background-image: url('../../picture/background.jpg')" >
   <!--  <div class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container">
             <div class="navbar-header">
@@ -26,14 +27,15 @@
             </div>
         </div>
     </div>
-   --> <div class="container body-content">
+   --> <div class="container body-content" >
+           @{mambership x = (mambership)Session["nav"];
+               ViewBag.nav = x;}
+           @Html.Partial("navbar")
+           
         @RenderBody()
-           @{mambership m = (mambership)Session["nav"];}
-               @Html.Partial("navbar",m)
-
 
         <hr />
-        <footer>
+        <footer style="color:white">
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>

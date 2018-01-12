@@ -10,7 +10,24 @@ namespace onlineFoodOrdering.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            resturantEntities r = new resturantEntities();
+            return View(r.resturant);
+        }
+        [HttpPost]
+        public ActionResult  check(mambership m)
+        {
+            resturantEntities r = new resturantEntities();
+            IQueryable<mambership> a=(from x in r.mambership where x.username == m.username select x);
+            if (m.mpassword == a.First().mpassword||m==null)
+            {
+                Session["nav"] = a.First();
+                return View("Index", r.resturant);
+            }
+            else
+            {
+                return View("Error");
+            }
+
         }
 
         public ActionResult About()
@@ -30,7 +47,7 @@ namespace onlineFoodOrdering.Controllers
 
         public ActionResult saved(string uname,string fname,string type,string email
           ,  int phone,long cellphone,string provience,string city,string address,int postCode,int dd,int mm,
-            int yyyy,string vegeterian,string password,string lname)
+            int yyyy,string vegeterian,string pass,string lname)
         {
             resturantEntities r = new resturantEntities();
             customer c = new customer();
@@ -51,12 +68,18 @@ namespace onlineFoodOrdering.Controllers
             r.customer.Add(c);
             mambership m = new mambership();
             m.username = uname;
-            m.mpassword = password;
+            m.mpassword = pass;
             m.mtype = type;
             r.mambership.Add(m);
             r.SaveChangesAsync();
             Session["nav"] = m;
                 return View("saved");
+        }
+
+
+        public ActionResult Login()
+        {
+            return View();
         }
     }
 }

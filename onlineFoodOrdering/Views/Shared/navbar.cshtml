@@ -1,4 +1,4 @@
-﻿@model onlineFoodOrdering.Models.mambership
+﻿@using onlineFoodOrdering.Models
 <html>
 <head>
     @Styles.Render("~/Content/css")
@@ -18,12 +18,13 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
-                @if (Model == null)
+                @{mambership x = (mambership)ViewBag.nav;}
+                @if (x == null)
                 {   <li>@Html.ActionLink("Register", "Register", "Home")</li>
                 <li>@Html.ActionLink("Login", "Login", "Home")</li>}
                 else
                 {
-                    <li>@Html.ActionLink(Model.username, "Index", "Home")</li>
+                    <li>@Html.ActionLink(x.username, "Index", "Home")</li>
                 }
            <!--     <li style="position: relative;  display: block;  padding: 15px 15px">nothing</li>-->
             </ul>

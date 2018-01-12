@@ -207,6 +207,7 @@
       <DependentUpon>information.edmx</DependentUpon>
       <LastGenOutput>information.cs</LastGenOutput>
     </Content>
+    <Content Include="picture\background.jpg" />
     <Content Include="picture\slide\1.png" />
     <Content Include="picture\slide\2.png" />
     <Content Include="picture\slide\3.png" />
@@ -232,6 +233,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Load.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\respond.js" />
@@ -256,6 +258,8 @@
     <Content Include="Views\Shared\navbar.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\saved.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\check.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
