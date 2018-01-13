@@ -14,7 +14,7 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table" style="color:white">
+    <table class="table" style="color:white;background-color:#222222">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.branch_code)
@@ -43,6 +43,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.r_phone_number)
             </th>
+         
             <th></th>
         </tr>
     
@@ -75,10 +76,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.r_phone_number)
             </td>
+           
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+               
+                @Html.ActionLink("غذاها", "foods", item ) 
             </td>
         </tr>
     }

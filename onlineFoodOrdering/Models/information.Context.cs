@@ -37,5 +37,6 @@ namespace onlineFoodOrdering.Models
         public virtual DbSet<payment> payment { get; set; }
         public virtual DbSet<resturant> resturant { get; set; }
         public virtual DbSet<work_time> work_time { get; set; }
+        public virtual DbSet<FinR> FinR { get; set; }
     }
 }

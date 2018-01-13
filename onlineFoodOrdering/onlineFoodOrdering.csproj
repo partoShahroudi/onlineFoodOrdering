@@ -143,6 +143,9 @@
     <Compile Include="Models\delivery.cs">
       <DependentUpon>information.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FinR.cs">
+      <DependentUpon>information.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\food.cs">
       <DependentUpon>information.tt</DependentUpon>
     </Compile>
@@ -208,6 +211,7 @@
       <LastGenOutput>information.cs</LastGenOutput>
     </Content>
     <Content Include="picture\background.jpg" />
+    <Content Include="picture\delivery truck.gif" />
     <Content Include="picture\slide\1.png" />
     <Content Include="picture\slide\2.png" />
     <Content Include="picture\slide\3.png" />
@@ -260,6 +264,8 @@
     <Content Include="Views\Home\saved.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\check.cshtml" />
+    <Content Include="Views\Home\foods.cshtml" />
+    <Content Include="Views\Home\deliver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

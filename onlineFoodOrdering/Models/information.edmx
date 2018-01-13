@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="resturantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="resturantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="coeficent">
           <Key>
             <PropertyRef Name="cprice" />
@@ -39,6 +39,17 @@
           <Property Name="d_phone_number" Type="bigint" Nullable="false" />
           <Property Name="resturant" Type="int" Nullable="false" />
           <Property Name="available" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FinR">
+          <Key>
+            <PropertyRef Name="rcode" />
+            <PropertyRef Name="fcode" />
+          </Key>
+          <Property Name="rcode" Type="int" Nullable="false" />
+          <Property Name="point" Type="tinyint" />
+          <Property Name="picture" Type="image" />
+          <Property Name="new" Type="bit" Nullable="false" />
+          <Property Name="fcode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="food">
           <Key>
@@ -88,6 +99,7 @@
           <Property Name="costumer" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="order_code" Type="int" Nullable="false" />
           <Property Name="food" Type="int" Nullable="false" />
+          <Property Name="rcode" Type="int" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -152,6 +164,30 @@
             </Principal>
             <Dependent Role="delivery">
               <PropertyRef Name="resturant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FinR__fcode__49C3F6B7">
+          <End Role="food" Type="Self.food" Multiplicity="1" />
+          <End Role="FinR" Type="Self.FinR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="food">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="FinR">
+              <PropertyRef Name="fcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FinR__rcode__4AB81AF0">
+          <End Role="resturant" Type="Self.resturant" Multiplicity="1" />
+          <End Role="FinR" Type="Self.FinR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="FinR">
+              <PropertyRef Name="rcode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -255,6 +291,7 @@
           <EntitySet Name="coeficent" EntityType="Self.coeficent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="delivery" EntityType="Self.delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinR" EntityType="Self.FinR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="food" EntityType="Self.food" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mambership" EntityType="Self.mambership" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="manager" EntityType="Self.manager" Schema="dbo" store:Type="Tables" />
@@ -271,6 +308,14 @@
           <AssociationSet Name="FK__delivery__restur__276EDEB3" Association="Self.FK__delivery__restur__276EDEB3">
             <End Role="resturant" EntitySet="resturant" />
             <End Role="delivery" EntitySet="delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FinR__fcode__49C3F6B7" Association="Self.FK__FinR__fcode__49C3F6B7">
+            <End Role="food" EntitySet="food" />
+            <End Role="FinR" EntitySet="FinR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FinR__rcode__4AB81AF0" Association="Self.FK__FinR__rcode__4AB81AF0">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="FinR" EntitySet="FinR" />
           </AssociationSet>
           <AssociationSet Name="FK__manages__rcode__3A81B327" Association="Self.FK__manages__rcode__3A81B327">
             <End Role="resturant" EntitySet="resturant" />
@@ -305,8 +350,7 @@
             <End Role="work_time" EntitySet="work_time" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="resturantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -362,6 +406,7 @@
           <Property Name="available" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="coeficent" Relationship="Self.FK__coeficent__code__44FF419A" FromRole="food" ToRole="coeficent" />
           <NavigationProperty Name="ordering" Relationship="Self.FK__ordering__food__3F466844" FromRole="food" ToRole="ordering" />
+          <NavigationProperty Name="FinR" Relationship="resturantModel.FK__FinR__fcode__49C3F6B7" FromRole="food" ToRole="FinR" />
         </EntityType>
         <EntityType Name="mambership">
           <Key>
@@ -405,6 +450,7 @@
           <NavigationProperty Name="customer" Relationship="Self.FK__ordering__costum__3D5E1FD2" FromRole="ordering" ToRole="customer" />
           <NavigationProperty Name="food1" Relationship="Self.FK__ordering__food__3F466844" FromRole="ordering" ToRole="food" />
           <NavigationProperty Name="orders" Relationship="Self.FK__ordering__order___3E52440B" FromRole="ordering" ToRole="orders" />
+          <Property Name="rcode" Type="Int32" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -446,6 +492,7 @@
           <NavigationProperty Name="delivery" Relationship="Self.FK__delivery__restur__276EDEB3" FromRole="resturant" ToRole="delivery" />
           <NavigationProperty Name="manages" Relationship="Self.FK__manages__rcode__3A81B327" FromRole="resturant" ToRole="manages" />
           <NavigationProperty Name="work_time" Relationship="Self.FK__work_time__Rcode__4222D4EF" FromRole="resturant" ToRole="work_time" />
+          <NavigationProperty Name="FinR" Relationship="resturantModel.FK__FinR__rcode__4AB81AF0" FromRole="resturant" ToRole="FinR" />
         </EntityType>
         <EntityType Name="work_time">
           <Key>
@@ -629,7 +676,53 @@
             <End Role="resturant" EntitySet="resturant" />
             <End Role="work_time" EntitySet="work_time" />
           </AssociationSet>
+          <EntitySet Name="FinR" EntityType="resturantModel.FinR" />
+          <AssociationSet Name="FK__FinR__fcode__49C3F6B7" Association="resturantModel.FK__FinR__fcode__49C3F6B7">
+            <End Role="food" EntitySet="food" />
+            <End Role="FinR" EntitySet="FinR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FinR__rcode__4AB81AF0" Association="resturantModel.FK__FinR__rcode__4AB81AF0">
+            <End Role="resturant" EntitySet="resturant" />
+            <End Role="FinR" EntitySet="FinR" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="FinR">
+          <Key>
+            <PropertyRef Name="rcode" />
+            <PropertyRef Name="fcode" />
+          </Key>
+          <Property Name="rcode" Type="Int32" Nullable="false" />
+          <Property Name="point" Type="Byte" />
+          <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="new" Type="Boolean" Nullable="false" />
+          <Property Name="fcode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="food" Relationship="resturantModel.FK__FinR__fcode__49C3F6B7" FromRole="FinR" ToRole="food" />
+          <NavigationProperty Name="resturant" Relationship="resturantModel.FK__FinR__rcode__4AB81AF0" FromRole="FinR" ToRole="resturant" />
+        </EntityType>
+        <Association Name="FK__FinR__fcode__49C3F6B7">
+          <End Type="resturantModel.food" Role="food" Multiplicity="1" />
+          <End Type="resturantModel.FinR" Role="FinR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="food">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="FinR">
+              <PropertyRef Name="fcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FinR__rcode__4AB81AF0">
+          <End Type="resturantModel.resturant" Role="resturant" Multiplicity="1" />
+          <End Type="resturantModel.FinR" Role="FinR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resturant">
+              <PropertyRef Name="branch_code" />
+            </Principal>
+            <Dependent Role="FinR">
+              <PropertyRef Name="rcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -718,6 +811,7 @@
           <EntitySetMapping Name="ordering">
             <EntityTypeMapping TypeName="resturantModel.ordering">
               <MappingFragment StoreEntitySet="ordering">
+                <ScalarProperty Name="rcode" ColumnName="rcode" />
                 <ScalarProperty Name="costumer" ColumnName="costumer" />
                 <ScalarProperty Name="order_code" ColumnName="order_code" />
                 <ScalarProperty Name="food" ColumnName="food" />
@@ -766,6 +860,17 @@
               <MappingFragment StoreEntitySet="work_time">
                 <ScalarProperty Name="Rcode" ColumnName="Rcode" />
                 <ScalarProperty Name="Wtime" ColumnName="Wtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinR">
+            <EntityTypeMapping TypeName="resturantModel.FinR">
+              <MappingFragment StoreEntitySet="FinR">
+                <ScalarProperty Name="fcode" ColumnName="fcode" />
+                <ScalarProperty Name="new" ColumnName="new" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="point" ColumnName="point" />
+                <ScalarProperty Name="rcode" ColumnName="rcode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

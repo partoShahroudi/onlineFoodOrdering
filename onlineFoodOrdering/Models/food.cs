@@ -19,6 +19,7 @@ namespace onlineFoodOrdering.Models
         {
             this.coeficent = new HashSet<coeficent>();
             this.ordering = new HashSet<ordering>();
+            this.FinR = new HashSet<FinR>();
         }
     
         public int code { get; set; }
@@ -33,5 +34,7 @@ namespace onlineFoodOrdering.Models
         public virtual ICollection<coeficent> coeficent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ordering> ordering { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinR> FinR { get; set; }
     }
 }

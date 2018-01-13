@@ -20,6 +20,7 @@ namespace onlineFoodOrdering.Models
             this.delivery = new HashSet<delivery>();
             this.manages = new HashSet<manages>();
             this.work_time = new HashSet<work_time>();
+            this.FinR = new HashSet<FinR>();
         }
     
         public int branch_code { get; set; }
@@ -38,5 +39,7 @@ namespace onlineFoodOrdering.Models
         public virtual ICollection<manages> manages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<work_time> work_time { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinR> FinR { get; set; }
     }
 }

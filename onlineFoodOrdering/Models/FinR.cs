@@ -12,15 +12,15 @@ namespace onlineFoodOrdering.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ordering
+    public partial class FinR
     {
-        public string costumer { get; set; }
-        public int order_code { get; set; }
-        public int food { get; set; }
-        public Nullable<int> rcode { get; set; }
+        public int rcode { get; set; }
+        public Nullable<byte> point { get; set; }
+        public byte[] picture { get; set; }
+        public bool @new { get; set; }
+        public int fcode { get; set; }
     
-        public virtual customer customer { get; set; }
-        public virtual food food1 { get; set; }
-        public virtual orders orders { get; set; }
+        public virtual food food { get; set; }
+        public virtual resturant resturant { get; set; }
     }
 }

@@ -29,15 +29,57 @@ namespace onlineFoodOrdering.Controllers
             }
 
         }
-
+        public ActionResult foods(resturant r)
+        {
+            resturantEntities re = new resturantEntities();
+            IQueryable<food> foo = from res in re.resturant
+                                   join fr in re.FinR on res.branch_code equals fr.rcode
+                                   join fo in re.food on
+                                  fr.fcode equals fo.code
+                                   where fr.rcode == r.branch_code
+                                   select fo;
+            Session["now"] = r.branch_code;
+            return View("foods",foo );
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
+        private bool cmp(orders a,orders b)
+        {
+            return a.code < b.code;
+        }
+        public ActionResult deliver(food f,int code)
+        {
+            if (Session["nav"] == null)
+                return View("Login");
+            resturantEntities re = new resturantEntities();
+            IQueryable<orders> or = from o in re.orders select o;
+            orders order = new orders();
+            order.code = or.First().code - 1;
+            order.delivery_code = 1;
+            order.orders_time = DateTime.Now;
+            order.recieved_time = DateTime.Now;
+            order.price = f.price * 1000;
+            order.delivery_price = 1000;
+            re.orders.Add(order);
+            re.SaveChanges();
 
-      
+            ordering orderings = new ordering();
+            orderings.costumer =( (mambership)Session["nav"]).username;
+            orderings.order_code = order.code;
+            orderings.food = f.code;
+            orderings.rcode = int.Parse(Session["now"].ToString());
+            re.ordering.Add(orderings);
+            re.SaveChanges();
+
+            return View();
+        }
+
+
+
         public ActionResult Register()
         {
 

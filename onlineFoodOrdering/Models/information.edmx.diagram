@@ -27,6 +27,9 @@
         <AssociationConnector Association="resturantModel.FK__ordering__order___3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="resturantModel.FK__payment__order_c__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="resturantModel.FK__work_time__Rcode__4222D4EF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="resturantModel.FinR" Width="1.5" PointX="10.5" PointY="8.5" />
+        <AssociationConnector Association="resturantModel.FK__FinR__fcode__49C3F6B7" />
+        <AssociationConnector Association="resturantModel.FK__FinR__rcode__4AB81AF0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
